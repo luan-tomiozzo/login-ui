@@ -3,6 +3,7 @@
 <h1 align="center"></h1>
 
 
-<h4>
-	🚧 🚀 Em construção...  🚧
-</h4>
+
+<p align="center">
+  <img src="demonstracao_login.gif" alt="Animação da tela de login">
+</p>

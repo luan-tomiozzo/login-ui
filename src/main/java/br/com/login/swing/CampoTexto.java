@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.login.swing;
 
 import java.awt.Color;
@@ -17,10 +12,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
-/**
- *
- * @author Luan Tomiozzo
- */
 public class CampoTexto extends JTextField {
 
     public String getHint() {
@@ -54,7 +45,7 @@ public class CampoTexto extends JTextField {
     private String hint = "";
 
     public CampoTexto() {
-        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         setBackground(new Color(0, 0, 0, 0));
         setForeground(Color.decode("#7A8C8D"));
         setFont(new java.awt.Font("sansserif", 0, 13));
@@ -65,7 +56,7 @@ public class CampoTexto extends JTextField {
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(new Color(230, 245, 241));
+        g2.setColor(new Color(230, 254, 241));
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 5, 5);
         paintIcon(g);
         super.paintComponent(g);
@@ -79,7 +70,7 @@ public class CampoTexto extends JTextField {
             ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
             Insets ins = getInsets();
             FontMetrics fm = g.getFontMetrics();
-            g.setColor(new Color(200, 200, 200));
+            g.setColor(Color.decode("#658775"));
             g.drawString(hint, ins.left, h / 2 + fm.getAscent() / 2 - 2);
         }
     }
@@ -101,13 +92,10 @@ public class CampoTexto extends JTextField {
     private void initBorder() {
         int left = 15;
         int right = 15;
-        //  5 is default
         if (prefixIcon != null) {
-            //  prefix is left
             left = prefixIcon.getIconWidth() + 15;
         }
         if (suffixIcon != null) {
-            //  suffix is right
             right = suffixIcon.getIconWidth() + 15;
         }
         setBorder(javax.swing.BorderFactory.createEmptyBorder(10, left, 10, right));

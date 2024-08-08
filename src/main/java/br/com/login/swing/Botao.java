@@ -8,6 +8,7 @@ package br.com.login.swing;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -81,8 +82,8 @@ public class Botao extends JButton {
         int height = getHeight();
         BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = img.createGraphics();
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(getBackground());
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);        
+        g2.setPaint(new GradientPaint(0, 0, new Color(82, 171, 41), 0, getHeight(), new Color(22, 116, 66)));
         g2.fillRoundRect(0, 0, width, height, height, height);
         if (pressedPoint != null) {
             g2.setColor(effectColor);

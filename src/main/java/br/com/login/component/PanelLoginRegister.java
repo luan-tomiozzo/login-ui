@@ -1,6 +1,7 @@
 package br.com.login.component;
 
 import br.com.login.swing.Botao;
+import br.com.login.swing.CampoSenha;
 import br.com.login.swing.CampoTexto;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -26,24 +27,24 @@ public class PanelLoginRegister extends javax.swing.JLayeredPane {
 
     private void initRegister() {
         register.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
-        JLabel label = new JLabel("Criar conta");
+        JLabel label = new JLabel("Cadastrar");
         label.setFont(new Font("sansserif", 1, 30));
-        label.setForeground(new Color(7, 164, 121));
+        label.setForeground(new Color(22, 116, 66));
         register.add(label);
 
         CampoTexto txtUser = new CampoTexto();
-        txtUser.setPrefixIcon(new ImageIcon("user.png"));
         txtUser.setHint("Nome");
+        txtUser.setPrefixIcon(new ImageIcon("user.png"));
         register.add(txtUser, "w 60%");
 
         CampoTexto txtEmail = new CampoTexto();
-        txtEmail.setPrefixIcon(new ImageIcon("mail.png"));
         txtEmail.setHint("Email");
+        txtEmail.setPrefixIcon(new ImageIcon("mail.png"));
         register.add(txtEmail, "w 60%");
 
-        CampoTexto txtPass = new CampoTexto();
-        txtPass.setPrefixIcon(new ImageIcon("pass.png"));
+        CampoSenha txtPass = new CampoSenha();
         txtPass.setHint("Senha");
+        txtPass.setPrefixIcon(new ImageIcon("pass.png"));
         register.add(txtPass, "w 60%");
 
         Botao cmd = new Botao();
@@ -57,17 +58,17 @@ public class PanelLoginRegister extends javax.swing.JLayeredPane {
         login.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
         JLabel label = new JLabel("Entrar");
         label.setFont(new Font("sansserif", 1, 30));
-        label.setForeground(new Color(7, 164, 121));
+        label.setForeground(new Color(22, 116, 66));
         login.add(label);
 
-        CampoTexto txtEmail = new CampoTexto();
-        txtEmail.setPrefixIcon(new ImageIcon("mail.png"));
-        txtEmail.setHint("Email");
-        login.add(txtEmail, "w 60%");
+        CampoTexto txtUser = new CampoTexto();
+        txtUser.setHint("Usuario");
+        txtUser.setPrefixIcon(new ImageIcon("user.png"));
+        login.add(txtUser, "w 60%");
 
-        CampoTexto txtPass = new CampoTexto();
-        txtPass.setPrefixIcon(new ImageIcon("pass.png"));
+        CampoSenha txtPass = new CampoSenha();
         txtPass.setHint("Senha");
+        txtPass.setPrefixIcon(new ImageIcon("pass.png"));
         login.add(txtPass, "w 60%");
 
         JButton cmdForget = new JButton("Esqueceu a senha?");

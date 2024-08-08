@@ -1,10 +1,18 @@
 package br.com.login.component;
 
+import br.com.login.swing.BotaoContorno;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+import javax.swing.JLabel;
+import net.miginfocom.swing.MigLayout;
 
 /**
  *
@@ -12,52 +20,68 @@ import java.awt.event.ActionListener;
  */
 public class PanelCover extends javax.swing.JPanel {
 
+    private final DecimalFormat df = new DecimalFormat("##0.###", DecimalFormatSymbols.getInstance(Locale.US));
     private ActionListener event;
+    private MigLayout layout;
+    private JLabel title;
+    private JLabel description;
+    private JLabel description1;
+    private BotaoContorno button;
+    private boolean isLogin;
 
     public PanelCover() {
-        setOpaque(false);
         initComponents();
+        setOpaque(false);
+        layout = new MigLayout("wrap, fill", "[center]", "push[]25[]10[]25[]push");
+        setLayout(layout);
+        init();
+
+    }
+
+    private void init() {
+        title = new JLabel("Bem vindo de volta!");
+        title.setFont(new Font("sansserif", 1, 30));
+        title.setForeground(new Color(245, 245, 245));
+        add(title);
+        description = new JLabel("Para se manter conectado,");
+        description.setForeground(new Color(245, 245, 245));
+        add(description);
+        description1 = new JLabel("faça login com seu usuario e senha!");
+        description1.setForeground(new Color(245, 245, 245));
+        add(description1);
+        button = new BotaoContorno();
+        button.setBackground(new Color(255, 255, 255));
+        button.setForeground(new Color(255, 255, 255));
+        button.setText("LOGIN");
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                event.actionPerformed(ae);
+            }
+        });
+        add(button, "w 60%, h 40");
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-
-        jButton1.setText("Teste animação");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addComponent(jButton1)
-                .addContainerGap(91, Short.MAX_VALUE))
+            .addGap(0, 318, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(194, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(84, 84, 84))
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        event.actionPerformed(evt);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     @Override
     protected void paintComponent(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;
-        GradientPaint gra = new GradientPaint(0, 0, new Color(228, 255, 221 ), 0, getHeight(), new Color(5, 144, 34  ));
+        GradientPaint gra = new GradientPaint(0, 0, new Color(82, 171, 41), 0, getHeight(), new Color(22, 116, 66));
         g2.setPaint(gra);
         g2.fillRect(0, 0, getWidth(), getHeight());
         super.paintComponent(grphcs);
@@ -67,7 +91,55 @@ public class PanelCover extends javax.swing.JPanel {
         this.event = event;
     }
 
+    public void registerLeft(double v) {
+        v = Double.valueOf(df.format(v));
+        login(false);
+        layout.setComponentConstraints(title, "pad 0 -" + v + "% 0 0");
+        layout.setComponentConstraints(description, "pad 0 -" + v + "% 0 0");
+        layout.setComponentConstraints(description1, "pad 0 -" + v + "% 0 0");
+    }
+
+    public void registerRight(double v) {
+        v = Double.valueOf(df.format(v));
+        login(false);
+        layout.setComponentConstraints(title, "pad 0 -" + v + "% 0 0");
+        layout.setComponentConstraints(description, "pad 0 -" + v + "% 0 0");
+        layout.setComponentConstraints(description1, "pad 0 -" + v + "% 0 0");
+    }
+
+    public void loginLeft(double v) {
+        v = Double.valueOf(df.format(v));
+        login(true);
+        layout.setComponentConstraints(title, "pad 0 " + v + "% 0 " + v + "%");
+        layout.setComponentConstraints(description, "pad 0 " + v + "% 0 " + v + "%");
+        layout.setComponentConstraints(description1, "pad 0 " + v + "% 0 " + v + "%");
+    }
+
+    public void loginRight(double v) {
+        v = Double.valueOf(df.format(v));
+        login(true);
+        layout.setComponentConstraints(title, "pad 0 " + v + "% 0 " + v + "%");
+        layout.setComponentConstraints(description, "pad 0 " + v + "% 0 " + v + "%");
+        layout.setComponentConstraints(description1, "pad 0 " + v + "% 0 " + v + "%");
+    }
+
+    public void login(boolean login) {
+        if (this.isLogin != login) {
+            if (login) {
+                title.setText("Novo login");
+                description.setText("Insira seus dados pessoais");
+                description1.setText("para fazer o cadastro.");
+                button.setText("CADASTRAR");
+            } else {
+                title.setText("Já tem cadastro?");
+                description.setText("Faça login, usando");
+                description1.setText("seus usuario e senha");
+                button.setText("ENTRAR");
+            }
+            this.isLogin = login;
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
